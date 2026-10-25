@@ -1,0 +1,14 @@
+# SPA fallback for static hosts that read `_redirects`
+# (Netlify, Cloudflare Pages). Vite copies this file into `dist/` verbatim.
+#
+# WHY THIS IS NEEDED: the app uses BrowserRouter with real paths — /login,
+# /register, /reset-password, /office/:officeId, /admin, /admin/office/:officeId.
+# A static host serves files, not routes, so a refresh or a deep link at any of
+# those paths would 404 without a rewrite to index.html.
+#
+# The `200` status makes this a rewrite, not a redirect, so the URL is preserved
+# and React Router can resolve it client-side.
+#
+# Vercel does not read this file — it uses `vercel.json` at the repo root.
+
+/*    /index.html   200
